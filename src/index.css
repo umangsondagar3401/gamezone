@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+h1 {
+  font-family: "Audiowide", "Tourney", cursive;
+  font-weight: 500;
+}
+
+* {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #6366f1 rgba(0, 0, 0, 0.1); /* thumb and track */
+}
