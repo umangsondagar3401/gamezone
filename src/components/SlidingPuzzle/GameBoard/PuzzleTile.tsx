@@ -23,7 +23,7 @@ export const PuzzleTile = ({
     if (isLoading) {
       return (
         <div className="relative w-full h-full">
-          <div className="absolute inset-0 bg-gray-300 animate-pulse rounded-lg" />
+          <div className="absolute inset-0 bg-indigo-50 animate-pulse rounded-lg" />
         </div>
       );
     }
@@ -60,9 +60,9 @@ export const PuzzleTile = ({
     <motion.div
       className={`flex items-center justify-center rounded-xl cursor-pointer select-none overflow-hidden ${
         puzzleType === "number"
-          ? "bg-indigo-500 text-white shadow-lg hover:shadow-xl"
-          : "bg-gray-400"
-      } aspect-square ${boardSize === 3 ? "min-w-[100px]" : "min-w-[80px]"}`}
+          ? "bg-indigo-400 text-white shadow-lg hover:shadow-xl"
+          : "bg-indigo-200"
+      } aspect-square w-full h-full`}
       initial={{ scale: 1 }}
       onClick={() => onClick(index)}
       whileTap={{ scale: isClickable ? 0.95 : 1 }}
