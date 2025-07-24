@@ -56,27 +56,30 @@ export const GameBoard = ({
   }
 
   return (
-    <div
-      className={`grid gap-3 bg-indigo-300 p-4 rounded-2xl shadow-2xl ${
-        boardSize === 3 ? "max-w-md" : "max-w-2xl"
-      } w-full mx-auto`}
-      style={{
-        gridTemplateColumns: `repeat(${boardSize}, minmax(0, 1fr))`,
-      }}
-    >
-      {tiles?.map((tile, index) => (
-        <PuzzleTile
-          key={index}
-          tile={tile}
-          index={index}
-          boardSize={boardSize}
-          onClick={onTileClick}
-          puzzleType={puzzleType}
-          imagePieces={imagePieces}
-          loadedImages={loadedImages}
-          isClickable={isClickable(tile)}
-        />
-      ))}
+    <div className="w-full px-4">
+      <div
+        className={`grid gap-2 sm:gap-3 bg-indigo-200 p-2 sm:p-4 rounded-2xl shadow-2xl mx-auto ${
+          boardSize === 3 ? "max-w-md" : "max-w-2xl"
+        } w-full`}
+        style={{
+          gridTemplateColumns: `repeat(${boardSize}, minmax(0, 1fr))`,
+          aspectRatio: "1/1",
+        }}
+      >
+        {tiles?.map((tile, index) => (
+          <PuzzleTile
+            key={index}
+            tile={tile}
+            index={index}
+            boardSize={boardSize}
+            onClick={onTileClick}
+            puzzleType={puzzleType}
+            imagePieces={imagePieces}
+            loadedImages={loadedImages}
+            isClickable={isClickable(tile)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
