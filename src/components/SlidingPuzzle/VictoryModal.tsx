@@ -33,19 +33,19 @@ export const VictoryModal = ({
                 bounce: 0.5,
               }}
               onClick={(e) => e.stopPropagation()}
-              className="relative bg-white rounded-2xl p-8 w-full max-w-md mx-auto shadow-2xl"
+              className="relative bg-white rounded-2xl p-6 sm:p-8 w-full max-w-md mx-auto shadow-2xl"
             >
               <motion.h2
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.3 }}
-                className="text-3xl font-bold text-gray-800 mb-4"
+                className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3 sm:mb-4"
               >
                 Congratulations! 🎉
               </motion.h2>
 
               <motion.p
-                className="text-gray-600 mb-6 text-lg"
+                className="text-gray-600 mb-5 sm:mb-6 text-base sm:text-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
@@ -60,7 +60,7 @@ export const VictoryModal = ({
               >
                 <button
                   onClick={onNewGame}
-                  className="w-full bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="w-full bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-sm sm:text-base"
                 >
                   New Game
                 </button>
