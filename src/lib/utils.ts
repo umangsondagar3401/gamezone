@@ -40,12 +40,12 @@ export const games = [
   },
   {
     id: 5,
-    name: "Puzzle Game",
-    description: "Solve challenging puzzles and brain teasers",
+    name: "2048",
+    description: "Slide tiles to reach 2048!",
     icon: "🧩",
     color: "from-yellow-500 to-yellow-700",
     btnColor: "from-yellow-400 to-yellow-600",
-    link: "/puzzle-game",
+    link: "/game-2048",
   },
   {
     id: 6,
@@ -162,4 +162,30 @@ export const themeEmojis: Record<Theme, string[]> = {
     "🥜",
     "🌰",
   ],
+};
+
+// Game 2048
+// Get tile background color based on value
+export const getTileColor = (value: number) => {
+  const colors: { [key: number]: string } = {
+    2: "bg-indigo-100 text-indigo-800", // light
+    4: "bg-indigo-200 text-indigo-900",
+    8: "bg-indigo-300 text-white",
+    16: "bg-indigo-400 text-white",
+    32: "bg-indigo-500 text-white",
+    64: "bg-indigo-600 text-white",
+    128: "bg-violet-500 text-white", // transition to violet
+    256: "bg-violet-600 text-white",
+    512: "bg-purple-600 text-white",
+    1024: "bg-purple-700 text-white",
+    2048: "bg-purple-800 text-white", // deep & rich
+  };
+  return colors[value] || "bg-indigo-50 text-indigo-800"; // default for unknown tiles
+};
+
+// Calculate font size based on tile value
+export const getFontSize = (value: number) => {
+  if (value < 100) return "text-3xl";
+  if (value < 1000) return "text-2xl";
+  return "text-xl";
 };
