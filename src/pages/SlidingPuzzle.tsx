@@ -4,19 +4,19 @@ import {
   incrementMoves,
   resetGame as resetGameAction,
 } from "../store/slidingPuzzleSlice";
+import {
+  splitImage,
+  checkSolved,
+  shuffleTiles,
+  initializeBoard,
+  getRandomCategory,
+  handleImageLoad as handleImageLoadUtil,
+} from "../lib/imageUtils";
 import { motion } from "framer-motion";
 import type { RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  splitImage,
-  shuffleTiles,
-  getRandomCategory,
-  initializeBoard,
-  checkSolved,
-  handleImageLoad as handleImageLoadUtil,
-} from "../lib/imageUtils";
+import { fadeInUp } from "../animation/CommonVariants";
 import GameOptions from "../components/SlidingPuzzle/GameOptions";
-import { GameHeader } from "../components/SlidingPuzzle/GameHeader";
 import { VictoryModal } from "../components/SlidingPuzzle/VictoryModal";
 import type { ImageCategory, ImagePiece, Tile } from "../types/puzzletile";
 import { GameBoard } from "../components/SlidingPuzzle/GameBoard/GameBoard";
@@ -198,12 +198,15 @@ const SlidingPuzzle = () => {
         <GameOptions />
       ) : (
         <>
-          <GameHeader
-            moves={moves}
-            onNewGame={startNewGame}
-            showShuffle={isGameStarted}
-            onShuffle={handleShuffleClick}
-          />
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            animate="show"
+            className="bg-white px-4 py-2 mb-5 rounded-lg shadow"
+          >
+            <div className="text-sm text-gray-500 text-center">Moves</div>
+            <div className="font-mono font-bold text-center">{moves}</div>
+          </motion.div>
 
           <GameBoard
             tiles={tiles}
@@ -215,6 +218,42 @@ const SlidingPuzzle = () => {
             onImageLoad={handleImageLoad}
             showCompleteImage={showCompleteImage}
           />
+
+          <div className="flex justify-center items-center gap-4 my-5 w-full max-w-md">
+            <motion.button
+              variants={fadeInUp}
+              initial="hidden"
+              animate="show"
+              custom={0.2}
+              onClick={startNewGame}
+              className="bg-indigo-600 text-white px-6 py-2 rounded-lg font-bold shadow-md hover:bg-indigo-700 transition-colors cursor-pointer"
+            >
+              New Game
+            </motion.button>
+
+            {isGameStarted && (
+              <motion.button
+                onClick={handleShuffleClick}
+                className="bg-purple-500 text-white cursor-pointer px-6 py-2 rounded-lg font-bold shadow-md hover:bg-purple-600 transition-colors"
+                variants={fadeInUp}
+                initial="hidden"
+                animate="show"
+                custom={0.2}
+              >
+                Shuffle
+              </motion.button>
+            )}
+          </div>
+
+          {/* Game instructions */}
+          <div className="mt-4 text-center text-sm text-gray-500">
+            <p>
+              <strong>How to play: </strong>
+              Click adjacent tiles to move them. Arrange numbers in order{" "}
+              {puzzleType === "image" ? "or complete the image" : ""} with the
+              empty space at the end.
+            </p>
+          </div>
 
           {isGameWon && (
             <VictoryModal
