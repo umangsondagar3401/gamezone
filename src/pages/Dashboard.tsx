@@ -37,7 +37,7 @@ const Dashboard = () => {
       </motion.div>
 
       <motion.div
-        className="flex flex-wrap justify-center gap-8 px-4"
+        className="flex flex-wrap justify-start gap-8 px-4"
         variants={fade}
         initial="hidden"
         animate="show"

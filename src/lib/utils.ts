@@ -42,10 +42,10 @@ export const games = [
     id: 5,
     name: "2048",
     description: "Slide tiles to reach 2048!",
-    icon: "🧩",
+    icon: "🧊",
     color: "from-yellow-500 to-yellow-700",
     btnColor: "from-yellow-400 to-yellow-600",
-    link: "/game-2048",
+    link: "/2048",
   },
   {
     id: 6,
@@ -55,6 +55,15 @@ export const games = [
     color: "from-red-500 to-red-700",
     btnColor: "from-red-400 to-red-600",
     link: "/sudoku",
+  },
+  {
+    id: 7,
+    name: "Sliding Puzzle",
+    description: "Rearrange the tiles to form the correct image or order",
+    icon: "🧩",
+    color: "from-green-500 to-green-700",
+    btnColor: "from-green-400 to-green-600",
+    link: "/sliding-puzzle",
   },
 ];
 

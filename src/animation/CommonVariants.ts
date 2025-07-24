@@ -42,12 +42,11 @@ export const buttonVariants: Variants = {
     transition: { type: "spring", bounce: 0.5, duration: 0.6 },
   },
   hover: {
-    scale: 1.09,
-    rotate: -3,
+    scale: 1.02,
     boxShadow: "0 6px 24px 0 #a5b4fc44",
     transition: { type: "spring", bounce: 0.6, duration: 0.25 },
   },
-  tap: { scale: 0.96, rotate: 2, transition: { duration: 0.1 } },
+  tap: { scale: 0.98, transition: { duration: 0.1 } },
   selected: {
     backgroundColor: "#4f46e5",
     color: "#fff",
@@ -83,7 +82,7 @@ export const startBtnVariants: Variants = {
     transition: { type: "spring", bounce: 0.5, duration: 0.7 },
   },
   hover: {
-    scale: 1.04,
+    scale: 1.03,
     boxShadow: "0 6px 24px 0 #6366f144",
     transition: { type: "spring", bounce: 0.5, duration: 0.2 },
   },

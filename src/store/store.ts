@@ -5,6 +5,7 @@ import memoryMatchReducer from "./memorymatchSlice";
 import sudokuReducer from "./sudokuSlice";
 import wordSearchReducer from "./wordSearchSlice";
 import game2048Reducer from "./game2048Slice";
+import slidingPuzzleReducer from "./slidingPuzzleSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     sudoku: sudokuReducer,
     wordSearch: wordSearchReducer,
     game2048: game2048Reducer,
+    slidingPuzzle: slidingPuzzleReducer
   },
   devTools: process.env.NODE_ENV !== "production",
 });
