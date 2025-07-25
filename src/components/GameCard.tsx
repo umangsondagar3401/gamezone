@@ -12,7 +12,7 @@ const GameCard = ({ game }: { game: Game }) => {
       initial="hidden"
       whileHover="hover"
       whileInView="show"
-      viewport={{ once: false, amount: 0.2 }}
+      viewport={{ once: false }}
       whileTap="tap"
       className="relative group h-full flex flex-col cursor-default"
     >
