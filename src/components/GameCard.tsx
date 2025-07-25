@@ -11,8 +11,7 @@ const GameCard = ({ game }: { game: Game }) => {
       variants={cardVariants}
       initial="hidden"
       whileHover="hover"
-      whileInView="show"
-      viewport={{ once: false }}
+      animate="show"
       whileTap="tap"
       className="relative group h-full flex flex-col cursor-default"
     >
