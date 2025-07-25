@@ -1,4 +1,11 @@
+import game2048 from "../assets/icons/2048.png";
+import sudoku from "../assets/icons/Sudoku.png";
 import type { Theme } from "../types/memorymatch";
+import ticTacToe from "../assets/icons/TicTacToe.png";
+import wordSearch from "../assets/icons/WordSearch.png";
+import memoryMatch from "../assets/icons/MemoryMatch.png";
+import slidingPuzzle from "../assets/icons/SlidingPuzzle.png";
+import rockPaperScissors from "../assets/icons/RockPaperScissors.png";
 
 // Games card
 export const games = [
@@ -6,7 +13,7 @@ export const games = [
     id: 1,
     name: "Tic-Tac-Toe",
     description: "Challenge a friend or the computer in this classic game",
-    icon: "❌⭕",
+    icon: ticTacToe,
     color: "from-pink-500 to-pink-700",
     btnColor: "from-pink-400 to-pink-600",
     link: "/tic-tac-toe",
@@ -15,7 +22,7 @@ export const games = [
     id: 2,
     name: "Rock-Paper-Scissors",
     description: "Play the ultimate game of chance and strategy",
-    icon: "🤜🤛",
+    icon: rockPaperScissors,
     color: "from-indigo-500 to-indigo-700",
     btnColor: "from-indigo-400 to-indigo-600",
     link: "/rock-paper-scissors",
@@ -24,7 +31,7 @@ export const games = [
     id: 3,
     name: "Memory Match",
     description: "Test your memory with this classic card matching game",
-    icon: "🧠",
+    icon: memoryMatch,
     color: "from-blue-500 to-blue-700",
     btnColor: "from-blue-400 to-blue-600",
     link: "/memory-match",
@@ -33,7 +40,7 @@ export const games = [
     id: 4,
     name: "Word Search",
     description: "Find hidden words in a grid of letters",
-    icon: "🔍",
+    icon: wordSearch,
     color: "from-purple-500 to-purple-700",
     btnColor: "from-purple-400 to-purple-600",
     link: "/word-search",
@@ -42,7 +49,7 @@ export const games = [
     id: 5,
     name: "2048",
     description: "Slide tiles to reach 2048!",
-    icon: "🧊",
+    icon: game2048,
     color: "from-yellow-500 to-yellow-700",
     btnColor: "from-yellow-400 to-yellow-600",
     link: "/2048",
@@ -51,7 +58,7 @@ export const games = [
     id: 6,
     name: "Sudoku",
     description: "Classic number placement puzzle",
-    icon: "🔢",
+    icon: sudoku,
     color: "from-red-500 to-red-700",
     btnColor: "from-red-400 to-red-600",
     link: "/sudoku",
@@ -60,7 +67,7 @@ export const games = [
     id: 7,
     name: "Sliding Puzzle",
     description: "Rearrange the tiles to form the correct image or order",
-    icon: "🧩",
+    icon: slidingPuzzle,
     color: "from-green-500 to-green-700",
     btnColor: "from-green-400 to-green-600",
     link: "/sliding-puzzle",
