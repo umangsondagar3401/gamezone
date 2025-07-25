@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 h1 {
-  font-family: "Audiowide", "Tourney", cursive;
+  font-family: "Audiowide", "Tourney", sans-serif;
   font-weight: 500;
 }
 
