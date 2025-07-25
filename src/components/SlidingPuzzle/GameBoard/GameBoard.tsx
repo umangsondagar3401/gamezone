@@ -59,7 +59,7 @@ export const GameBoard = ({
     <div className="w-full px-4">
       <div
         className={`grid gap-2 sm:gap-3 bg-indigo-200 p-2 sm:p-4 rounded-2xl shadow-2xl mx-auto ${
-          boardSize === 3 ? "max-w-md" : "max-w-2xl"
+          boardSize === 3 ? "max-w-[400px]" : "max-w-[500px]"
         } w-full`}
         style={{
           gridTemplateColumns: `repeat(${boardSize}, minmax(0, 1fr))`,
