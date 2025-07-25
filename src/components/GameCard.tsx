@@ -25,11 +25,11 @@ const GameCard = ({ game }: { game: Game }) => {
         />
         <div className="p-5 sm:p-6 flex-1 flex flex-col">
           <div className="flex items-center gap-4 flex-col sm:flex-row justify-center sm:justify-start">
-            <div className="flex-shrink-0 p-3 rounded-xl bg-gradient-to-br from-white to-gray-50 shadow-sm">
-              <span className="text-3xl sm:text-4xl inline-block min-w-18 text-center">
-                {game.icon}
-              </span>
-            </div>
+            <img
+              src={game.icon}
+              alt={game.name}
+              className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
+            />
             <div>
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
                 {game.name}
