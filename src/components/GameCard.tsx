@@ -28,7 +28,7 @@ const GameCard = ({ game }: { game: Game }) => {
             <img
               src={game.icon}
               alt={game.name}
-              className="w-12 h-12 sm:w-14 sm:h-14 object-contain"
+              className="w-16 h-16 object-contain"
             />
             <div>
               <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
