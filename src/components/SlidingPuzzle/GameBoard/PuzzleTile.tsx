@@ -50,7 +50,7 @@ export const PuzzleTile = ({
     }
 
     return (
-      <span className="text-4xl font-extrabold text-white drop-shadow-md">
+      <span className="text-[28px] font-extrabold text-white drop-shadow-md">
         {tile}
       </span>
     );
