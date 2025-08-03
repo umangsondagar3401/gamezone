@@ -1,11 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import ticTacToeReducer from "./tictactoeSlice";
-import rockPaperScissorsReducer from "./rockpaperscissorsSlice";
-import memoryMatchReducer from "./memorymatchSlice";
 import sudokuReducer from "./sudokuSlice";
-import wordSearchReducer from "./wordSearchSlice";
 import game2048Reducer from "./game2048Slice";
+import ticTacToeReducer from "./tictactoeSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import wordSearchReducer from "./wordSearchSlice";
+import memoryMatchReducer from "./memorymatchSlice";
+import dotsAndBoxesReducer from "./dotsAndBoxesSlice";
 import slidingPuzzleReducer from "./slidingPuzzleSlice";
+import rockPaperScissorsReducer from "./rockpaperscissorsSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
     sudoku: sudokuReducer,
     wordSearch: wordSearchReducer,
     game2048: game2048Reducer,
-    slidingPuzzle: slidingPuzzleReducer
+    slidingPuzzle: slidingPuzzleReducer,
+    dotsAndBoxes: dotsAndBoxesReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });

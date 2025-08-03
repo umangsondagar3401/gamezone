@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import TicTacToe from "./pages/TicTacToe";
 import MemoryMatch from "./pages/MemoryMatch";
+import DotsAndBoxes from "./pages/DotsAndBoxes";
 import WordSearchPage from "./pages/WordSearch";
 import SlidingPuzzle from "./pages/SlidingPuzzle";
 import RockPaperScissors from "./pages/RockPaperScissors";
@@ -26,6 +27,7 @@ function App() {
             <Route path="2048" element={<Game2048 />} />
             <Route path="sudoku" element={<Sudoku />} />
             <Route path="sliding-puzzle" element={<SlidingPuzzle />} />
+            <Route path="dots-and-boxes" element={<DotsAndBoxes />} />
           </Route>
         </Routes>
       </BrowserRouter>

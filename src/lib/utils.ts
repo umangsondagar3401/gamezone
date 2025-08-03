@@ -4,6 +4,7 @@ import type { Theme } from "../types/memorymatch";
 import ticTacToe from "../assets/icons/TicTacToe.png";
 import wordSearch from "../assets/icons/WordSearch.png";
 import memoryMatch from "../assets/icons/MemoryMatch.png";
+import dotsAndBoxes from "../assets/icons/DotsAndBoxes.png";
 import slidingPuzzle from "../assets/icons/SlidingPuzzle.png";
 import rockPaperScissors from "../assets/icons/RockPaperScissors.png";
 
@@ -72,9 +73,18 @@ export const games = [
     btnColor: "from-red-400 to-red-600",
     link: "/sudoku",
   },
+  {
+    id: 8,
+    name: "Dots and Boxes",
+    description: "Take turns connecting dots to complete the most boxes",
+    icon: dotsAndBoxes,
+    color: "from-sky-500 to-sky-700",
+    btnColor: "from-sky-400 to-sky-600",
+    link: "/dots-and-boxes",
+  },
 ];
 
-// Tic-Tac-Toe
+// Tic Tac Toe
 export const ticTacToeWinningCombinations = [
   [0, 1, 2],
   [3, 4, 5],
@@ -204,4 +214,39 @@ export const getFontSize = (value: number) => {
   if (value < 100) return "text-3xl";
   if (value < 1000) return "text-2xl";
   return "text-xl";
+};
+
+// Dots and Boxes
+export const getSpacing = (gridSize: number, isMobile: boolean): number => {
+  if (isMobile) {
+    switch (gridSize) {
+      case 3:
+        return 65;
+      case 4:
+        return 55;
+      case 5:
+        return 45;
+      case 6:
+        return 40;
+      case 9:
+        return 35;
+      default:
+        return 40;
+    }
+  } else {
+    switch (gridSize) {
+      case 3:
+        return 100;
+      case 4:
+        return 80;
+      case 5:
+        return 70;
+      case 6:
+        return 65;
+      case 9:
+        return 55;
+      default:
+        return 50;
+    }
+  }
 };
