@@ -11,7 +11,7 @@ import rockPaperScissors from "../assets/icons/RockPaperScissors.png";
 export const games = [
   {
     id: 1,
-    name: "Tic-Tac-Toe",
+    name: "Tic Tac Toe",
     description: "Challenge a friend or the computer in this classic game",
     icon: ticTacToe,
     color: "from-blue-500 to-blue-700",
@@ -29,7 +29,7 @@ export const games = [
   },
   {
     id: 3,
-    name: "Rock-Paper-Scissors",
+    name: "Rock Paper Scissors",
     description: "Play the ultimate game of chance and strategy",
     icon: rockPaperScissors,
     color: "from-purple-500 to-purple-700",

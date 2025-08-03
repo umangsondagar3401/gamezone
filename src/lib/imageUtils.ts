@@ -46,16 +46,16 @@ export const shuffleTiles = <T extends number | string>(
   const shuffled = [...initialTiles];
   let emptyIndex = boardSize * boardSize - 1;
 
-  // Perform random moves to shuffle
+  // Perform random moves starting from solved state
   for (let i = 0; i < 1000; i++) {
     const directions: number[] = [];
     const row = Math.floor(emptyIndex / boardSize);
     const col = emptyIndex % boardSize;
 
-    if (row > 0) directions.push(-boardSize);
-    if (row < boardSize - 1) directions.push(boardSize);
-    if (col > 0) directions.push(-1);
-    if (col < boardSize - 1) directions.push(1);
+    if (row > 0) directions.push(-boardSize); // Up
+    if (row < boardSize - 1) directions.push(boardSize); // Down
+    if (col > 0) directions.push(-1); // Left
+    if (col < boardSize - 1) directions.push(1); // Right
 
     const direction = directions[Math.floor(Math.random() * directions.length)];
     const swapIndex = emptyIndex + direction;
@@ -67,26 +67,52 @@ export const shuffleTiles = <T extends number | string>(
     emptyIndex = swapIndex;
   }
 
-  // Ensure the puzzle is solvable (only for number puzzles)
+  // Ensure solvability (only for number puzzles)
   if (puzzleType === "number") {
-    let inversions = 0;
-    const tilesWithoutEmpty = shuffled.filter((tile) => tile !== 0) as number[];
-
-    for (let i = 0; i < tilesWithoutEmpty.length - 1; i++) {
-      for (let j = i + 1; j < tilesWithoutEmpty.length; j++) {
-        if (tilesWithoutEmpty[i] > tilesWithoutEmpty[j]) inversions++;
+    if (!isSolvable(shuffled as number[], boardSize)) {
+      // Swap two non-zero tiles (not the empty tile)
+      for (let i = 0; i < shuffled.length - 1; i++) {
+        if (shuffled[i] !== 0 && shuffled[i + 1] !== 0) {
+          [shuffled[i], shuffled[i + 1]] = [shuffled[i + 1], shuffled[i]];
+          break;
+        }
       }
-    }
-
-    if (inversions % 2 !== 0) {
-      const first = shuffled[0];
-      const second = shuffled[1];
-      shuffled[0] = second;
-      shuffled[1] = first;
     }
   }
 
   return shuffled;
+};
+
+export const isSolvable = (tiles: number[], boardSize: number): boolean => {
+  const inversions = getInversionCount(tiles);
+  const emptyIndex = tiles.indexOf(0);
+  const emptyRowFromBottom = boardSize - Math.floor(emptyIndex / boardSize);
+
+  if (boardSize % 2 === 1) {
+    // Odd grid: solvable if inversions is even
+    return inversions % 2 === 0;
+  } else {
+    // Even grid: more complex rule
+    // Solvable if:
+    //  - blank is on even row from bottom AND inversions is odd
+    //  - OR blank is on odd row from bottom AND inversions is even
+    const isBlankOnEvenRowFromBottom = emptyRowFromBottom % 2 === 0;
+    return (
+      (isBlankOnEvenRowFromBottom && inversions % 2 === 1) ||
+      (!isBlankOnEvenRowFromBottom && inversions % 2 === 0)
+    );
+  }
+};
+
+const getInversionCount = (tiles: number[]): number => {
+  const arr = tiles.filter((t) => t !== 0);
+  let count = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) count++;
+    }
+  }
+  return count;
 };
 
 export const getRandomCategory = (): ImageCategory => {
