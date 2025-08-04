@@ -88,6 +88,20 @@ export const getPageSeo = (path: string): SeoData => {
           "tile game",
         ],
       };
+    case "/dots-and-boxes":
+      return {
+        title: "Dots and Boxes - Play Online | GameZone",
+        description:
+          "Play the classic Dots and Boxes game online for free. Challenge yourself or play against a friend!",
+        keywords: [
+          "dots and boxes",
+          "online game",
+          "free game",
+          "two player game",
+          "strategy game",
+          "box game",
+        ],
+      };
     default:
       return {
         title: defaultTitle,
