@@ -32,7 +32,7 @@ const SymbolSelection = ({
           className="px-8 py-4 bg-blue-500 text-white rounded-lg font-bold text-2xl cursor-pointer w-24"
           whileHover={{
             scale: 1.05,
-            boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)",
+            boxShadow: "var(--shadow-symbol-x)",
           }}
           whileTap={{ scale: 0.95 }}
           onClick={() => handleSymbolSelect("X")}
@@ -43,7 +43,7 @@ const SymbolSelection = ({
           className="px-8 py-4 bg-red-500 text-white rounded-lg font-bold text-2xl cursor-pointer w-24"
           whileHover={{
             scale: 1.05,
-            boxShadow: "0 0 15px rgba(239, 68, 68, 0.5)",
+            boxShadow: "var(--shadow-symbol-o)",
           }}
           whileTap={{ scale: 0.95 }}
           onClick={() => handleSymbolSelect("O")}

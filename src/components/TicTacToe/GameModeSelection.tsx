@@ -41,7 +41,7 @@ const GameModeSelection = ({
           whileHover={{
             scale: 1.05,
             y: -5,
-            boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.4)",
+            boxShadow: "var(--shadow-hover-primary-strong)",
           }}
           whileTap={{ scale: 0.98 }}
           onClick={() => selectGameMode("computer")}
@@ -58,7 +58,7 @@ const GameModeSelection = ({
           whileHover={{
             scale: 1.05,
             y: -5,
-            boxShadow: "0 10px 25px -5px rgba(16, 185, 129, 0.4)",
+            boxShadow: "var(--shadow-hover-success-strong)",
           }}
           whileTap={{ scale: 0.98 }}
           onClick={() => selectGameMode("friend")}

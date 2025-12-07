@@ -1,6 +1,136 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
+:root {
+  --color-primary: #4f46e5;
+  --color-primary-soft: #6366f1;
+  --color-surface: #ffffff;
+  --color-text-primary: #1e293b;
+  --color-text-on-primary: #ffffff;
+  --color-border-subtle: #d1d5db;
+
+  --color-player-1: #3b82f6;
+  --color-player-2: #ef4444;
+  --color-player-1-soft: #3b82f633;
+  --color-player-2-soft: #ef444433;
+
+  --color-wordsearch-paused-bg: #f3f4f6;
+
+  --color-icon-neutral-1: #4a4a4a;
+  --color-icon-neutral-2: #545454;
+  --color-icon-neutral-light: #e0e0e0;
+
+  --color-transparent: transparent;
+
+  --color-scrollbar-thumb: #6366f1;
+  --color-scrollbar-track: var(--color-gray-50);
+
+  --color-confetti-gold: #ffd700;
+  --color-confetti-orange: #ffa500;
+  --color-confetti-red: #ff6347;
+
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-200: #c6d2ff;
+  --color-indigo-300: #a3b3ff;
+  --color-indigo-400: #7c86ff;
+  --color-indigo-500: #615fff;
+  --color-indigo-600: #4f39f6;
+  --color-indigo-700: #432dd7;
+  --color-indigo-800: #372aac;
+  --color-indigo-900: #312c85;
+
+  --color-purple-400: #c27aff;
+  --color-purple-500: #ad46ff;
+  --color-purple-600: #9810fa;
+  --color-purple-700: #8200db;
+  --color-purple-800: #6e11b0;
+
+  --color-blue-300: #93c5fd;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  --color-red-50: #fef2f2;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+
+  --color-yellow-300: #fde047;
+  --color-yellow-600: #ca8a04;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --shadow-soft-indigo: 0 6px 24px 0 #a5b4fc44;
+  --shadow-strong-indigo: 0 6px 24px 0 #6366f144;
+  --shadow-hover-primary-strong: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+  --shadow-hover-success-strong: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+  --shadow-symbol-x: 0 0 15px rgba(59, 130, 246, 0.5);
+  --shadow-symbol-o: 0 0 15px rgba(239, 68, 68, 0.5);
+}
+
+@theme inline {
+  --color-indigo-50: var(--color-indigo-50);
+  --color-indigo-100: var(--color-indigo-100);
+  --color-indigo-200: var(--color-indigo-200);
+  --color-indigo-300: var(--color-indigo-300);
+  --color-indigo-400: var(--color-indigo-400);
+  --color-indigo-500: var(--color-indigo-500);
+  --color-indigo-600: var(--color-indigo-600);
+  --color-indigo-700: var(--color-indigo-700);
+  --color-indigo-800: var(--color-indigo-800);
+  --color-indigo-900: var(--color-indigo-900);
+  --color-purple-400: var(--color-purple-400);
+  --color-purple-500: var(--color-purple-500);
+  --color-purple-600: var(--color-purple-600);
+  --color-purple-700: var(--color-purple-700);
+  --color-purple-800: var(--color-purple-800);
+
+  --color-blue-300: var(--color-blue-300);
+  --color-blue-500: var(--color-blue-500);
+  --color-blue-600: var(--color-blue-600);
+
+  --color-gray-50: var(--color-gray-50);
+  --color-gray-100: var(--color-gray-100);
+  --color-gray-200: var(--color-gray-200);
+  --color-gray-500: var(--color-gray-500);
+  --color-gray-600: var(--color-gray-600);
+  --color-gray-800: var(--color-gray-800);
+  --color-gray-900: var(--color-gray-900);
+
+  --color-red-50: var(--color-red-50);
+  --color-red-500: var(--color-red-500);
+  --color-red-600: var(--color-red-600);
+
+  --color-green-200: var(--color-green-200);
+  --color-green-300: var(--color-green-300);
+  --color-green-400: var(--color-green-400);
+  --color-green-500: var(--color-green-500);
+  --color-green-600: var(--color-green-600);
+  --color-green-700: var(--color-green-700);
+
+  --color-yellow-300: var(--color-yellow-300);
+  --color-yellow-600: var(--color-yellow-600);
+
+  --color-white: var(--color-white);
+  --color-black: var(--color-black);
+}
+
 h1 {
   font-family: "Audiowide", "Tourney", sans-serif;
   font-weight: 500;
@@ -8,5 +138,6 @@ h1 {
 
 * {
   scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: #6366f1 rgba(0, 0, 0, 0.1); /* thumb and track */
+  scrollbar-gutter: auto;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track); /* thumb and track */
 }

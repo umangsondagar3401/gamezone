@@ -12,6 +12,13 @@ const ConfettiCannon = ({
 }: ConfettiCannonProps) => {
   useEffect(() => {
     if (trigger) {
+      const rootStyles = getComputedStyle(document.documentElement);
+      const confettiColors = [
+        rootStyles.getPropertyValue("--color-confetti-gold").trim(),
+        rootStyles.getPropertyValue("--color-confetti-orange").trim(),
+        rootStyles.getPropertyValue("--color-confetti-red").trim(),
+      ].filter(Boolean) as string[];
+
       // Fire confetti from multiple angles for a cannon effect
       const fireConfetti = () => {
         const count = 200;
@@ -57,7 +64,7 @@ const ConfettiCannon = ({
         fire(0.1, {
           spread: 120,
           startVelocity: 45,
-          colors: ["#FFD700", "#FFA500", "#FF6347"],
+          colors: confettiColors.length ? confettiColors : undefined,
           origin: { x: 0.5, y: 0.6 },
         });
       };

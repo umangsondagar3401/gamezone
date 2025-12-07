@@ -73,7 +73,7 @@ const Line: React.FC<LineProps> = ({
             ? playerColor
             : isHovered
             ? getPlayerColor(currentPlayer)
-            : "#d1d5db",
+            : "var(--color-border-subtle)",
         }}
         initial={false}
       />

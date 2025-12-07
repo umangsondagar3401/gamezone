@@ -74,8 +74,10 @@ const WordSearchGrid: React.FC<WordSearchGridProps> = ({
                 minWidth: 0,
                 minHeight: 0,
                 fontSize: `${fontSize}px`,
-                background: paused ? "#f3f4f6" : undefined,
-                color: paused ? "transparent" : undefined,
+                background: paused
+                  ? "var(--color-wordsearch-paused-bg)"
+                  : undefined,
+                color: paused ? "var(--color-transparent)" : undefined,
                 cursor: paused ? "not-allowed" : undefined,
               }}
               onTouchEnd={paused ? undefined : () => onCellMouseUp()}

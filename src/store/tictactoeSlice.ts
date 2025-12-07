@@ -26,6 +26,119 @@ const checkWinner = (board: Player[]): Player | "draw" | null => {
   return board.every((cell: Player) => cell !== null) ? "draw" : null;
 };
 
+const getAvailableMoves = (board: Player[]): number[] => {
+  return board.reduce<number[]>((acc, cell, index) => {
+    if (cell === null) acc.push(index);
+    return acc;
+  }, []);
+};
+
+const isWinningMove = (
+  board: Player[],
+  index: number,
+  symbol: "X" | "O"
+): boolean => {
+  const newBoard = [...board];
+  newBoard[index] = symbol;
+  return checkWinner(newBoard) === symbol;
+};
+
+const countPotentialWinningLines = (
+  board: Player[],
+  symbol: "X" | "O"
+): number => {
+  let count = 0;
+  for (const [a, b, c] of ticTacToeWinningCombinations) {
+    const line = [a, b, c].map((i) => board[i]);
+    const symbolCount = line.filter((cell) => cell === symbol).length;
+    const emptyCount = line.filter((cell) => cell === null).length;
+    if (symbolCount === 2 && emptyCount === 1) {
+      count++;
+    }
+  }
+  return count;
+};
+
+const isForkMove = (
+  board: Player[],
+  index: number,
+  symbol: "X" | "O"
+): boolean => {
+  const newBoard = [...board];
+  newBoard[index] = symbol;
+  return countPotentialWinningLines(newBoard, symbol) >= 2;
+};
+
+const getBestMoveForComputer = (
+  board: Player[],
+  computer: "X" | "O",
+  human: "X" | "O"
+): number | null => {
+  const availableMoves = getAvailableMoves(board);
+  if (availableMoves.length === 0) return null;
+
+  // 1. Win: If the computer can win on this move, do it.
+  for (const move of availableMoves) {
+    if (isWinningMove(board, move, computer)) return move;
+  }
+
+  // 2. Block: If the opponent can win next move, block it.
+  for (const move of availableMoves) {
+    if (isWinningMove(board, move, human)) return move;
+  }
+
+  // 3. Create a fork (two ways to win on next move).
+  for (const move of availableMoves) {
+    if (isForkMove(board, move, computer)) return move;
+  }
+
+  // 4. Block opponent's fork.
+  const opponentForks = availableMoves.filter((move) =>
+    isForkMove(board, move, human)
+  );
+  if (opponentForks.length === 1) {
+    return opponentForks[0];
+  } else if (opponentForks.length > 1) {
+    // If the opponent has multiple fork opportunities, play center if possible,
+    // otherwise play a side to reduce their options.
+    const centerIndex = 4;
+    if (board[centerIndex] === null && availableMoves.includes(centerIndex)) {
+      return centerIndex;
+    }
+    const sideIndices = [1, 3, 5, 7].filter((i) => availableMoves.includes(i));
+    if (sideIndices.length > 0) return sideIndices[0];
+  }
+
+  // 5. Play center if available.
+  if (board[4] === null && availableMoves.includes(4)) {
+    return 4;
+  }
+
+  // 6. Play opposite corner of opponent.
+  const oppositeCornerPairs: [number, number][] = [
+    [0, 8],
+    [2, 6],
+    [6, 2],
+    [8, 0],
+  ];
+  for (const [corner, opposite] of oppositeCornerPairs) {
+    if (board[corner] === human && board[opposite] === null) {
+      if (availableMoves.includes(opposite)) return opposite;
+    }
+  }
+
+  // 7. Play any available corner.
+  const cornerIndices = [0, 2, 6, 8].filter((i) => availableMoves.includes(i));
+  if (cornerIndices.length > 0) return cornerIndices[0];
+
+  // 8. Play any available side.
+  const sideIndices = [1, 3, 5, 7].filter((i) => availableMoves.includes(i));
+  if (sideIndices.length > 0) return sideIndices[0];
+
+  // 9. Fallback: first available move (should rarely be hit).
+  return availableMoves[0];
+};
+
 const ticTacToeSlice = createSlice({
   name: "tictactoe",
   initialState,
@@ -100,30 +213,28 @@ const ticTacToeSlice = createSlice({
 
       // If it's not computer's turn, do nothing
       if (state.currentPlayer !== computerSymbol) return;
+      const humanSymbol = state.playerSymbol === "X" ? "X" : "O";
 
-      // Simple AI: Choose a random empty cell
-      const emptyCells = state.board.reduce<number[]>((acc, cell, index) => {
-        if (cell === null) acc.push(index);
-        return acc;
-      }, []);
+      const bestMove = getBestMoveForComputer(
+        state.board,
+        computerSymbol,
+        humanSymbol
+      );
 
-      if (emptyCells.length > 0) {
-        const randomIndex = Math.floor(Math.random() * emptyCells.length);
-        const move = emptyCells[randomIndex];
+      if (bestMove === null) return;
 
-        state.board[move] = state.currentPlayer;
+      state.board[bestMove] = state.currentPlayer;
 
-        const winner = checkWinner(state.board);
-        state.gameOver = winner !== null;
-        state.winner = winner;
+      const winner = checkWinner(state.board);
+      state.gameOver = winner !== null;
+      state.winner = winner;
 
-        if (winner === "X") state.scores.x++;
-        else if (winner === "O") state.scores.o++;
-        else if (winner === "draw") state.scores.draw++;
+      if (winner === "X") state.scores.x++;
+      else if (winner === "O") state.scores.o++;
+      else if (winner === "draw") state.scores.draw++;
 
-        if (!state.gameOver) {
-          state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
-        }
+      if (!state.gameOver) {
+        state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
       }
     },
   },

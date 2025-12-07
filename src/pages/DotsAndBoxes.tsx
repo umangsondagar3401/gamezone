@@ -33,7 +33,7 @@ const DotsAndBoxes: React.FC = () => {
   } = useSelector((state: RootState) => state.dotsAndBoxes);
 
   const getPlayerColor = (player: number) => {
-    return player === 1 ? "#3b82f6" : "#ef4444";
+    return player === 1 ? "var(--color-player-1)" : "var(--color-player-2)";
   };
 
   const handleStartGame = () => {

@@ -27,7 +27,12 @@ const Box: React.FC<BoxProps> = ({
         top: `${row * spacing + 20}px`,
         transform: "translate(-50%, -50%)",
         zIndex: 1,
-        backgroundColor: owner ? `${getPlayerColor(owner)}33` : "transparent",
+        backgroundColor:
+          owner === 1
+            ? "var(--color-player-1-soft)"
+            : owner === 2
+            ? "var(--color-player-2-soft)"
+            : "var(--color-transparent)",
       }}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}

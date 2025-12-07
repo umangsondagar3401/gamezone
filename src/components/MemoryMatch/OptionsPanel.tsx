@@ -54,7 +54,7 @@ const OptionsPanel = () => {
               className={`flex-1 min-w-[80px] py-2 px-1 rounded-lg border-2 transition-colors duration-500 cursor-pointer`}
               style={{
                 boxShadow:
-                  gridSize === size ? "0 6px 24px 0 #6366f144" : undefined,
+                  gridSize === size ? "var(--shadow-strong-indigo)" : undefined,
               }}
             >
               {size}×{size} ({size === 4 ? "8" : "18"} Pairs)
@@ -91,7 +91,7 @@ const OptionsPanel = () => {
               className={`flex-1 min-w-[80px] py-2 px-1 rounded-lg border-2 transition-colors duration-500 cursor-pointer`}
               style={{
                 boxShadow:
-                  theme === themeOption ? "0 6px 24px 0 #6366f144" : undefined,
+                  theme === themeOption ? "var(--shadow-strong-indigo)" : undefined,
               }}
             >
               {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
@@ -124,7 +124,7 @@ const OptionsPanel = () => {
               className={`flex-1 min-w-[80px] py-2 px-1 rounded-lg border-2 transition-colors duration-500 cursor-pointer`}
               style={{
                 boxShadow:
-                  players.length === num ? "0 6px 24px 0 #6366f144" : undefined,
+                  players.length === num ? "var(--shadow-strong-indigo)" : undefined,
               }}
             >
               {num} Players

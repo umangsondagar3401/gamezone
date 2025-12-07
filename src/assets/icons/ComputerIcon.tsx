@@ -20,11 +20,11 @@ const ComputerIcon: FC<SVGProps<SVGSVGElement>> = (props) => {
       />
       <path
         d="M77.44 631.168a0.64 0.64 0 0 1-0.64-0.64V189.376a0.64 0.64 0 0 1 0.64-0.64h869.184c0.256 0 0.64 0.256 0.64 0.64v441.152c0 0.32-0.384 0.64-0.64 0.64H77.44z"
-        fill="#545454"
+        fill="var(--color-icon-neutral-2)"
       />
       <path
         d="M77.44 740.032a0.64 0.64 0 0 1-0.64-0.64v-69.12a0.64 0.64 0 0 1 0.64-0.64h869.184c0.256 0 0.64 0.32 0.64 0.64v69.12c0 0.32-0.384 0.64-0.64 0.64H77.44z"
-        fill="#E0E0E0"
+        fill="var(--color-icon-neutral-light)"
       />
       <path
         d="M76.8 631.168h870.464v44.8H76.8zM637.12 875.776H386.816l19.264-88.768h211.904z"
@@ -32,7 +32,7 @@ const ComputerIcon: FC<SVGProps<SVGSVGElement>> = (props) => {
       />
       <path
         d="M431.68 875.776l19.2-88.768h122.368l19.136 88.768z"
-        fill="#E0E0E0"
+        fill="var(--color-icon-neutral-light)"
       />
       <path
         d="M721.984 888a16 16 0 0 1-16 16H318.016a16 16 0 0 1 0-32h388.032a16 16 0 0 1 15.936 16z"
@@ -44,11 +44,11 @@ const ComputerIcon: FC<SVGProps<SVGSVGElement>> = (props) => {
       />
       <path
         d="M366.272 445.76a22.464 22.464 0 0 1-31.68 0 22.464 22.464 0 0 1 0-31.68l134.272-134.272a22.464 22.464 0 0 1 31.68 0 22.464 22.464 0 0 1 0 31.68L366.272 445.76z"
-        fill="#FFFFFF"
+        fill="var(--color-surface)"
       />
       <path
         d="M407.424 540.16a22.464 22.464 0 0 1-31.68 0 22.528 22.528 0 0 1 0-31.744l67.328-67.264a22.464 22.464 0 0 1 31.68 0 22.464 22.464 0 0 1 0 31.68L407.424 540.16z"
-        fill="#FFFFFF"
+        fill="var(--color-surface)"
       />
     </svg>
   );

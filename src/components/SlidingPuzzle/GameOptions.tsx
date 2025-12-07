@@ -50,7 +50,7 @@ const GameOptions = () => {
               className={`flex-1 py-2 px-4 rounded-lg border-2 transition-colors cursor-pointer`}
               style={{
                 boxShadow:
-                  puzzleType === type ? "0 6px 24px 0 #6366f144" : undefined,
+                  puzzleType === type ? "var(--shadow-strong-indigo)" : undefined,
               }}
             >
               {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -83,7 +83,7 @@ const GameOptions = () => {
               className={`flex-1 py-2 px-4 rounded-lg border-2 transition-colors cursor-pointer`}
               style={{
                 boxShadow:
-                  gridSize === size ? "0 6px 24px 0 #6366f144" : undefined,
+                  gridSize === size ? "var(--shadow-strong-indigo)" : undefined,
               }}
             >
               {size}x{size}

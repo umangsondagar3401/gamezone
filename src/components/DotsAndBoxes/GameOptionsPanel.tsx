@@ -51,7 +51,7 @@ const GameOptionsPanel = ({ handleStartGame }: GameOptionsPanelProps) => {
               className={`flex-1 py-2 px-4 rounded-lg border-2 transition-colors cursor-pointer`}
               style={{
                 boxShadow:
-                  gridSize === size ? "0 6px 24px 0 #6366f144" : undefined,
+                  gridSize === size ? "var(--shadow-strong-indigo)" : undefined,
               }}
             >
               {size}x{size}
@@ -84,7 +84,7 @@ const GameOptionsPanel = ({ handleStartGame }: GameOptionsPanelProps) => {
               className={`flex-1 py-2 px-4 rounded-lg border-2 transition-colors cursor-pointer`}
               style={{
                 boxShadow:
-                  gameMode === type ? "0 6px 24px 0 #6366f144" : undefined,
+                  gameMode === type ? "var(--shadow-strong-indigo)" : undefined,
               }}
             >
               <span>Play with {type}</span>

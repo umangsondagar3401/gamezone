@@ -47,7 +47,7 @@ const LevelSelection: React.FC<LevelSelectionProps> = ({
             className={`flex-1 min-w-[80px] py-2 px-1 rounded-lg border-2 transition-colors duration-500 cursor-pointer`}
             style={{
               boxShadow:
-                difficulty === diff ? "0 6px 24px 0 #6366f144" : undefined,
+                difficulty === diff ? "var(--shadow-strong-indigo)" : undefined,
             }}
           >
             {diff.charAt(0).toUpperCase() + diff.slice(1)}

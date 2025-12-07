@@ -43,19 +43,19 @@ export const buttonVariants: Variants = {
   },
   hover: {
     scale: 1.02,
-    boxShadow: "0 6px 24px 0 #a5b4fc44",
+    boxShadow: "var(--shadow-soft-indigo)",
     transition: { type: "spring", bounce: 0.6, duration: 0.25 },
   },
   tap: { scale: 0.98, transition: { duration: 0.1 } },
   selected: {
-    backgroundColor: "#4f46e5",
-    color: "#fff",
-    borderColor: "#4f46e5",
+    backgroundColor: "var(--color-primary)",
+    color: "var(--color-text-on-primary)",
+    borderColor: "var(--color-primary)",
   },
   unselected: {
-    backgroundColor: "#fff",
-    color: "#1e293b",
-    borderColor: "#d1d5db",
+    backgroundColor: "var(--color-surface)",
+    color: "var(--color-text-primary)",
+    borderColor: "var(--color-border-subtle)",
   },
 };
 
@@ -83,7 +83,7 @@ export const startBtnVariants: Variants = {
   },
   hover: {
     scale: 1.03,
-    boxShadow: "0 6px 24px 0 #6366f144",
+    boxShadow: "var(--shadow-strong-indigo)",
     transition: { type: "spring", bounce: 0.5, duration: 0.2 },
   },
   tap: { scale: 0.98, transition: { duration: 0.1 } },
