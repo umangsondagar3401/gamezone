@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import type { RootState } from "../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import type { Choice } from "../types/rockpaperscissors";
-import { resetGame } from "../store/rockpaperscissorsSlice";
-import MoveSelection from "../components/RockPaperScissors/MoveSelection";
+import { playAgain } from "../store/rockpaperscissorsSlice";
 import { fadeInDown, fadeInUp } from "../animation/CommonVariants";
+import MoveSelection from "../components/RockPaperScissors/MoveSelection";
 
 // Icons for choices
 const ChoiceIcons: Record<Choice | "thinking", string> = {
@@ -29,7 +29,7 @@ const RockPaperScissors: React.FC = () => {
   const handlePlayAgain = () => {
     setShowChoices(true);
     setShowResult(false);
-    dispatch(resetGame());
+    dispatch(playAgain());
   };
 
   const renderGameResult = () => {

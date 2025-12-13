@@ -35,6 +35,7 @@ const wordSearchSlice = createSlice({
     setTimeTaken(state, action: PayloadAction<number>) {
       state.timeTaken = action.payload;
     },
+    resetGame: () => initialState,
   },
 });
 
@@ -44,6 +45,7 @@ export const {
   resetLevel,
   resetWordSearch,
   setTimeTaken,
+  resetGame,
 } = wordSearchSlice.actions;
 export default wordSearchSlice.reducer;
 

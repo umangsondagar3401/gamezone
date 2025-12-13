@@ -237,6 +237,8 @@ const ticTacToeSlice = createSlice({
         state.currentPlayer = state.currentPlayer === "X" ? "O" : "X";
       }
     },
+
+    backToHome: () => initialState,
   },
 });
 
@@ -246,6 +248,7 @@ export const {
   setGameMode,
   setPlayerSymbol,
   computerMove,
+  backToHome,
 } = ticTacToeSlice.actions;
 
 export default ticTacToeSlice.reducer;

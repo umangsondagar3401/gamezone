@@ -21,12 +21,12 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="tic-tac-toe" element={<TicTacToe />} />
-            <Route path="rock-paper-scissors" element={<RockPaperScissors />} />
             <Route path="memory-match" element={<MemoryMatch />} />
-            <Route path="word-search" element={<WordSearchPage />} />
+            <Route path="rock-paper-scissors" element={<RockPaperScissors />} />
             <Route path="2048" element={<Game2048 />} />
-            <Route path="sudoku" element={<Sudoku />} />
+            <Route path="word-search" element={<WordSearchPage />} />
             <Route path="sliding-puzzle" element={<SlidingPuzzle />} />
+            <Route path="sudoku" element={<Sudoku />} />
             <Route path="dots-and-boxes" element={<DotsAndBoxes />} />
           </Route>
         </Routes>

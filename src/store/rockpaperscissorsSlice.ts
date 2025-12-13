@@ -53,14 +53,15 @@ const gameSlice = createSlice({
         state.computerScore += 1;
       }
     },
-    resetGame: (state) => {
+    playAgain: (state) => {
       state.playerChoice = null;
       state.computerChoice = null;
       state.result = null;
       state.isAnimating = false;
     },
+    resetGame: () => initialState,
   },
 });
 
-export const { makeChoice, resetGame } = gameSlice.actions;
+export const { makeChoice, resetGame, playAgain } = gameSlice.actions;
 export default gameSlice.reducer;

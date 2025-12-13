@@ -122,9 +122,17 @@ const dotsAndBoxesSlice = createSlice({
 
       // Computer's turn in single player mode - handled in the component
     },
+
+    resetGame: () => initialState,
   },
 });
 
-export const { setGridSize, setGameMode, startGame, makeMove, startNewGame } =
-  dotsAndBoxesSlice.actions;
+export const {
+  setGridSize,
+  setGameMode,
+  startGame,
+  makeMove,
+  startNewGame,
+  resetGame,
+} = dotsAndBoxesSlice.actions;
 export default dotsAndBoxesSlice.reducer;

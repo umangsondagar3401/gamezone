@@ -53,6 +53,8 @@ const slidingPuzzleSlice = createSlice({
       state.isGameWon = false;
       state.isGameStarted = false;
     },
+
+    backToHome: () => initialState,
   },
 });
 
@@ -63,6 +65,7 @@ export const {
   incrementMoves,
   setGameWon,
   resetGame,
+  backToHome,
 } = slidingPuzzleSlice.actions;
 
 export default slidingPuzzleSlice.reducer;

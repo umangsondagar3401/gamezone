@@ -1,15 +1,42 @@
 import React from "react";
 import SEO from "./SEO";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
 import { getPageSeo } from "../lib/seoUtils";
 import { HiMiniArrowLeft } from "react-icons/hi2";
 import { fadeInDown } from "../animation/CommonVariants";
+import { resetGame as resetGame2048 } from "../store/game2048Slice";
+import { resetGame as resetGameSudoku } from "../store/sudokuSlice";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { resetGame as resetMemoryMatch } from "../store/memorymatchSlice";
+import { backToHome as resetGameTicTacToe } from "../store/tictactoeSlice";
+import { resetGame as resetGameWordSearch } from "../store/wordSearchSlice";
+import { resetGame as resetGameDotAndBoxes } from "../store/dotsAndBoxesSlice";
+import { backToHome as resetGameSlidingPuzzle } from "../store/slidingPuzzleSlice";
+import { resetGame as resetRockPaperScissors } from "../store/rockpaperscissorsSlice";
 
 const Layout: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
   const { title, description, keywords } = getPageSeo(location.pathname);
+
+  const routeActions: Record<string, () => void> = {
+    "/tic-tac-toe": () => dispatch(resetGameTicTacToe()),
+    "/memory-match": () => dispatch(resetMemoryMatch()),
+    "/rock-paper-scissors": () => dispatch(resetRockPaperScissors()),
+    "/2048": () => dispatch(resetGame2048()),
+    "/word-search": () => dispatch(resetGameWordSearch()),
+    "/sliding-puzzle": () => dispatch(resetGameSlidingPuzzle()),
+    "/sudoku": () => dispatch(resetGameSudoku()),
+    "/dots-and-boxes": () => dispatch(resetGameDotAndBoxes()),
+  };
+
+  const handleBackToHome = () => {
+    navigate("/");
+
+    routeActions[location.pathname]?.();
+  };
 
   return (
     <>
@@ -18,7 +45,7 @@ const Layout: React.FC = () => {
         {location.pathname !== "/" && (
           <motion.button
             className="flex items-center gap-2 text-gray-600 hover:text-gray-800 cursor-pointer ml-3 mr-auto"
-            onClick={() => navigate("/")}
+            onClick={handleBackToHome}
             initial="hidden"
             animate="show"
             variants={fadeInDown}

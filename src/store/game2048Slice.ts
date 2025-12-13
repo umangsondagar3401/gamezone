@@ -197,8 +197,10 @@ const game2048Slice = createSlice({
         }
       }
     },
+
+    resetGame: () => initialState,
   },
 });
 
-export const { startNewGame, moveTiles } = game2048Slice.actions;
+export const { startNewGame, moveTiles, resetGame } = game2048Slice.actions;
 export default game2048Slice.reducer;
