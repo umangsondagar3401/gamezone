@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Timer from "./Timer";
 import WordList from "./WordList";
 import { generate } from "random-words";
@@ -71,39 +71,58 @@ const WordSearchBoard: React.FC<WordSearchBoardProps> = ({
     const numWords = gridSize; // Always match word count to grid size
     const maxWordLength =
       difficulty === "easy" ? 7 : difficulty === "medium" ? 9 : 12;
-    // Generate unique words
-    const words: string[] = [];
-    const seen = new Set<string>();
-    while (words.length < numWords) {
-      const candidate = (
-        generate({
-          exactly: 1,
-          maxLength: maxWordLength,
-          formatter: (w: string) => w.toUpperCase(),
-        }) as string[]
-      )[0];
-      if (!seen.has(candidate)) {
-        seen.add(candidate);
-        words.push(candidate);
+    const maxAttempts = 60;
+    let finalGrid: string[][] = [];
+    let finalPlacements: { word: string; positions: [number, number][] }[] = [];
+    let finalWords: string[] = [];
+
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      const words: string[] = [];
+      const seen = new Set<string>();
+      while (words.length < numWords) {
+        const candidate = (
+          generate({
+            exactly: 1,
+            maxLength: maxWordLength,
+            formatter: (w: string) => w.toUpperCase(),
+          }) as string[]
+        )[0];
+        if (!seen.has(candidate)) {
+          seen.add(candidate);
+          words.push(candidate);
+        }
+      }
+      const { grid, wordPlacements } = placeWords(
+        words,
+        gridSize,
+        difficulty as "easy" | "medium" | "hard"
+      );
+      const placedWords = wordPlacements.map((wp) => wp.word);
+      if (placedWords.length === words.length) {
+        finalGrid = Array.from({ length: gridSize }, (_, i) =>
+          Array.from({ length: gridSize }, (_, j) => grid[i]?.[j] || "")
+        );
+        finalPlacements = wordPlacements;
+        finalWords = placedWords;
+        break;
+      } else {
+        if (placedWords.length > finalWords.length) {
+          finalGrid = Array.from({ length: gridSize }, (_, i) =>
+            Array.from({ length: gridSize }, (_, j) => grid[i]?.[j] || "")
+          );
+          finalPlacements = wordPlacements;
+          finalWords = placedWords;
+        }
       }
     }
-    setCurrentWords(words);
-    const { grid, wordPlacements } = placeWords(
-      words,
-      gridSize,
-      difficulty as "easy" | "medium" | "hard"
-    );
-    // Ensure grid is always NxN
-    setGrid(
-      Array.from({ length: gridSize }, (_, i) =>
-        Array.from({ length: gridSize }, (_, j) => grid[i]?.[j] || "")
-      )
-    );
-    setWordPlacements(wordPlacements);
+
+    setCurrentWords(finalWords);
+    setGrid(finalGrid);
+    setWordPlacements(finalPlacements);
     setFoundWords(new Set());
     setFoundMap(
       Object.fromEntries(
-        words.map((w) => [
+        finalWords.map((w) => [
           w,
           Array.from({ length: gridSize }, () => Array(gridSize).fill(false)),
         ])
@@ -238,6 +257,14 @@ const WordSearchBoard: React.FC<WordSearchBoardProps> = ({
 
   // Timer update
   const handleTimeUpdate = (s: number) => setTimeTaken(s);
+  const gridCells = useMemo(
+    () => buildGridCells(grid, foundMap, selectedCells),
+    [grid, foundMap, selectedCells]
+  );
+  const handleResume = useCallback(() => {
+    setIsPaused(false);
+    setTimerActive(true);
+  }, []);
 
   return (
     <>
@@ -298,11 +325,8 @@ const WordSearchBoard: React.FC<WordSearchBoardProps> = ({
               onCellMouseUp={handleCellMouseUp}
               onCellMouseDown={handleCellMouseDown}
               onCellMouseEnter={handleCellMouseEnter}
-              grid={buildGridCells(grid, foundMap, selectedCells)}
-              onResume={() => {
-                setIsPaused(false);
-                setTimerActive(true);
-              }}
+              grid={gridCells}
+              onResume={handleResume}
             />
           </div>
           <div className="mt-5 w-full flex justify-center">
