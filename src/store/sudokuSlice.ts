@@ -118,6 +118,7 @@ const initialState: GameState = {
   mistakes: 0,
   timer: 0,
   usedNumbers: {},
+  hintsUsed: 0,
 };
 
 const sudokuSlice = createSlice({
@@ -137,6 +138,7 @@ const sudokuSlice = createSlice({
       state.timer = 0;
       state.selectedCell = null;
       state.usedNumbers = {};
+      state.hintsUsed = 0;
 
       // Update used numbers for initial board
       const used: Record<number, boolean> = {};
@@ -232,6 +234,60 @@ const sudokuSlice = createSlice({
       }
     },
 
+    applyHint: (state) => {
+      if (
+        !state.isGameStarted ||
+        state.isGameWon ||
+        state.isGameOver ||
+        state.hintsUsed >= 3
+      )
+        return;
+
+      // Build pools: prefer empty cells, else incorrect cells; both non-given
+      const emptyCells: Array<{ row: number; col: number }> = [];
+      const incorrectCells: Array<{ row: number; col: number }> = [];
+
+      for (let i = 0; i < GRID_SIZE; i++) {
+        for (let j = 0; j < GRID_SIZE; j++) {
+          const cell = state.board[i][j];
+          if (cell.isGiven) continue;
+          const correct = state.solution[i][j];
+          const isEmpty = cell.value === null || cell.value === 0;
+          if (isEmpty) {
+            emptyCells.push({ row: i, col: j });
+          } else if (cell.value !== correct) {
+            incorrectCells.push({ row: i, col: j });
+          }
+        }
+      }
+
+      const pool = emptyCells.length > 0 ? emptyCells : incorrectCells;
+      if (pool.length === 0) return;
+
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      const { row, col } = pick;
+      const correct = state.solution[row][col];
+
+      const cell = state.board[row][col];
+      cell.value = correct;
+      cell.isInvalid = false;
+      state.usedNumbers[correct] = true;
+      state.selectedCell = { row, col };
+
+      // Check completion
+      const isComplete = state.board.every((r, ri) =>
+        r.every(
+          (c, ci) =>
+            c.isGiven || (c.value && c.value === state.solution[ri][ci])
+        )
+      );
+      if (isComplete) {
+        state.isGameWon = true;
+      }
+
+      state.hintsUsed = Math.min(3, state.hintsUsed + 1);
+    },
+
     togglePause: (state) => {
       if (state.isGameStarted && !state.isGameOver && !state.isGameWon) {
         state.isPaused = !state.isPaused;
@@ -263,6 +319,7 @@ export const {
   togglePause,
   incrementTimer,
   resetGame,
+  applyHint,
 } = sudokuSlice.actions;
 
 export default sudokuSlice.reducer;

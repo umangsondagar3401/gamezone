@@ -1,4 +1,4 @@
-export type Difficulty = 'easy' | 'medium' | 'hard';
+export type Difficulty = "easy" | "medium" | "hard";
 
 export interface Cell {
   value: number | null;
@@ -20,6 +20,7 @@ export interface GameState {
   mistakes: number;
   timer: number;
   usedNumbers: Record<number, boolean>;
+  hintsUsed: number;
 }
 
 export type NumberInput = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
