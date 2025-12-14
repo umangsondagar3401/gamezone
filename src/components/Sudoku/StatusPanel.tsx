@@ -25,8 +25,8 @@ const StatusPanel = ({ formatTime }: StatusPanelProps) => {
   } = useSelector((state: RootState) => state.sudoku);
 
   return (
-    <div>
-      <div className="flex items-center space-x-3 mb-3 justify-end">
+    <div className="flex md:block">
+      <div className="flex items-center space-x-3 mr-3 md:mr-0 md:mb-3 justify-end">
         <motion.button
           variants={fadeInUp}
           initial="hidden"
@@ -39,7 +39,7 @@ const StatusPanel = ({ formatTime }: StatusPanelProps) => {
             isPaused ||
             hintsUsed >= 3
           }
-          className={`px-4 py-2 bg-yellow-100 text-yellow-700 cursor-pointer rounded-lg font-medium hover:bg-yellow-200 transition flex items-center gap-1
+          className={`px-2 md:px-4 py-2 bg-yellow-100 text-yellow-700 cursor-pointer rounded-lg font-medium hover:bg-yellow-200 transition flex items-center gap-1
             ${
               !isGameStarted ||
               isGameWon ||
@@ -54,7 +54,8 @@ const StatusPanel = ({ formatTime }: StatusPanelProps) => {
           whileTap={{ scale: 0.95 }}
           aria-label={`Show Hint (${Math.max(0, 3 - hintsUsed)} left)`}
         >
-          <HiOutlineLightBulb className="w-5 h-5" /> Hint (
+          <HiOutlineLightBulb className="w-5 h-5" />{" "}
+          <span className="hidden md:inline-block">Hint</span> (
           {Math.max(0, 3 - hintsUsed)})
         </motion.button>
       </div>
