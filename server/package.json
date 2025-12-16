@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "start": "vite preview"
+    "start": "node index.js",
+    "dev": "node --watch index.js"
   },
   "dependencies": {
     "express": "^4.21.1",
