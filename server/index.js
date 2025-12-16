@@ -3,8 +3,11 @@ import http from "http";
 import { Server } from "socket.io";
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
-const CLIENT_ORIGIN =
-  "http://localhost:5174" || "https://gamezonevibes.vercel.app/";
+const ALLOWED_ORIGINS = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://gamezone-socket.vercel.app",
+];
 
 const app = express();
 app.get("/health", (_req, res) => {
@@ -14,7 +17,7 @@ app.get("/health", (_req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: CLIENT_ORIGIN,
+    origin: ALLOWED_ORIGINS,
     methods: ["GET", "POST"],
   },
 });

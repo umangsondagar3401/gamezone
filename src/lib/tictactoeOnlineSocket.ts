@@ -51,7 +51,7 @@ let socket: Socket | null = null;
 export function getSocket(): Socket {
   if (socket) return socket;
 
-  const url = import.meta.env.VITE_SOCKET_URL || "http://localhost:3001";
+  const url = "https://game-zone-server-cgko.onrender.com";
 
   socket = io(url, {
     transports: ["websocket"],
