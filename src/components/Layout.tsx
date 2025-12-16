@@ -1,7 +1,7 @@
 import React from "react";
 import SEO from "./SEO";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPageSeo } from "../lib/seoUtils";
 import { HiMiniArrowLeft } from "react-icons/hi2";
 import { fadeInDown } from "../animation/CommonVariants";
@@ -14,11 +14,14 @@ import { resetGame as resetGameWordSearch } from "../store/wordSearchSlice";
 import { resetGame as resetGameDotAndBoxes } from "../store/dotsAndBoxesSlice";
 import { backToHome as resetGameSlidingPuzzle } from "../store/slidingPuzzleSlice";
 import { resetGame as resetRockPaperScissors } from "../store/rockpaperscissorsSlice";
+import type { RootState } from "../store/store";
+import { getSocket } from "../lib/tictactoeOnlineSocket";
 
 const Layout: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
+  const ttt = useSelector((state: RootState) => state.tictactoe);
   const { title, description, keywords } = getPageSeo(location.pathname);
 
   const routeActions: Record<string, () => void> = {
@@ -33,6 +36,21 @@ const Layout: React.FC = () => {
   };
 
   const handleBackToHome = () => {
+    if (
+      location.pathname === "/tic-tac-toe" &&
+      ttt.gameMode === "online" &&
+      ttt.onlineMatchCode &&
+      ttt.onlinePlayerId
+    ) {
+      const socket = getSocket();
+      socket.emit("match:end", {
+        matchId: ttt.onlineMatchCode,
+        playerId: ttt.onlinePlayerId,
+        reason: "home",
+      });
+      localStorage.removeItem("ttt:matchId");
+    }
+
     navigate("/");
 
     routeActions[location.pathname]?.();
