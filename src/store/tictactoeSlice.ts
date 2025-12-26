@@ -15,10 +15,6 @@ const initialState: TicTacToeState = {
     draw: 0,
   },
   gameOver: false,
-  onlineMatchCode: null,
-  onlinePlayerId: null,
-  onlineMySymbol: null,
-  onlineConnected: false,
 };
 
 const checkWinner = (board: Player[]): Player | "draw" | null => {
@@ -185,51 +181,6 @@ const ticTacToeSlice = createSlice({
       state.gameOver = false;
     },
 
-    applyServerState: (
-      state,
-      action: PayloadAction<{
-        board: Player[];
-        currentPlayer: Player;
-        winner: Player | "draw" | null;
-        gameOver: boolean;
-        scores: {
-          x: number;
-          o: number;
-          draw: number;
-        };
-      }>
-    ) => {
-      state.board = action.payload.board;
-      state.currentPlayer = action.payload.currentPlayer;
-      state.winner = action.payload.winner;
-      state.gameOver = action.payload.gameOver;
-      state.scores = action.payload.scores;
-    },
-
-    setOnlineSession: (
-      state,
-      action: PayloadAction<{
-        matchId: string | null;
-        playerId: string | null;
-        mySymbol: "X" | "O" | null;
-      }>
-    ) => {
-      state.onlineMatchCode = action.payload.matchId;
-      state.onlinePlayerId = action.payload.playerId;
-      state.onlineMySymbol = action.payload.mySymbol;
-    },
-
-    clearOnlineSession: (state) => {
-      state.onlineMatchCode = null;
-      state.onlinePlayerId = null;
-      state.onlineMySymbol = null;
-      state.onlineConnected = false;
-    },
-
-    setOnlineConnected: (state, action: PayloadAction<boolean>) => {
-      state.onlineConnected = action.payload;
-    },
-
     setGameMode: (state, action: PayloadAction<GameMode>) => {
       state.gameMode = action.payload;
       state.board = Array(9).fill(null);
@@ -242,13 +193,6 @@ const ticTacToeSlice = createSlice({
         o: 0,
         draw: 0,
       };
-
-      if (action.payload !== "online") {
-        state.onlineMatchCode = null;
-        state.onlinePlayerId = null;
-        state.onlineMySymbol = null;
-        state.onlineConnected = false;
-      }
     },
 
     setPlayerSymbol: (state, action: PayloadAction<"X" | "O">) => {
@@ -301,10 +245,6 @@ const ticTacToeSlice = createSlice({
 export const {
   makeMove,
   resetGame,
-  applyServerState,
-  setOnlineSession,
-  clearOnlineSession,
-  setOnlineConnected,
   setGameMode,
   setPlayerSymbol,
   computerMove,

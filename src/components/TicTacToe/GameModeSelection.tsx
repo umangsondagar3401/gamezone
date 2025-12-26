@@ -66,23 +66,6 @@ const GameModeSelection = ({
           <FriendIcon width={24} height={24} />
           Play with Friend
         </motion.button>
-        <motion.button
-          className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl font-medium text-lg cursor-pointer shadow-lg hover:shadow-xl transition-all"
-          variants={fadeInUp}
-          initial="hidden"
-          animate="show"
-          custom={0.4}
-          whileHover={{
-            scale: 1.05,
-            y: -5,
-            boxShadow: "var(--shadow-hover-primary-strong)",
-          }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => selectGameMode("online")}
-        >
-          <FriendIcon width={24} height={24} />
-          Play Online with Friend
-        </motion.button>
       </div>
     </motion.div>
   );
