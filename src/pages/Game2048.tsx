@@ -159,19 +159,18 @@ const Game2048 = () => {
                         style={{
                           width: "calc(25% - 8px)",
                           height: "calc(25% - 8px)",
-                          //   left: `calc(${colIndex * 25}% + 4px)`,
-                          //   top: `calc(${rowIndex * 25}% + 4px)`,
                           left: getPositionOffset(colIndex),
                           top: getPositionOffset(rowIndex),
-
-                          transform: "translate(0, 0)",
                         }}
-                        initial={cell.isNew ? { scale: 0 } : false}
+                        initial={{ scale: cell.isNew ? 0 : 1 }}
                         animate={{
                           scale: 1,
                           transition: { duration: 0.15 },
                         }}
-                        exit={{ scale: 0 }}
+                        exit={{
+                          scale: 0,
+                          transition: { duration: 0.15 },
+                        }}
                       >
                         {cell.value}
                       </motion.div>
